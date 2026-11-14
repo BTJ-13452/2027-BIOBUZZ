@@ -33,14 +33,6 @@ public class TestSorting extends OpMode {
             sorting.leftArm.deactivate();
         }
 
-        telemetry.addLine("Right Arm:");
-
-        telemetry.addData("Is Active", sorting.rightArm.isActive());
-
-        telemetry.addLine("Left Arm:");
-
-        telemetry.addData("Is Active", sorting.leftArm.isActive());
-
         telemetry.addLine(sorting.toString());
         telemetry.update();
     }
