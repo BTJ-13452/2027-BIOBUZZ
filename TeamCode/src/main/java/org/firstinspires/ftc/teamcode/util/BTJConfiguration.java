@@ -18,8 +18,8 @@ public class BTJConfiguration {
     public static final String PISTON_SERVO_LEFT_NAME = "";
     public static final String PISTON_SERVO_RIGHT_NAME = "";
     public static final String SHOOTER_ANGLE_SERVO_NAME = "";
-    public static final String SORTING_SERVO_RIGHT_ARM_NAME = "";
-    public static final String SORTING_SERVO_LEFT_ARM_NAME = "";
+    public static final String SORTING_SERVO_RIGHT_ARM_NAME = "Sorting servo right";
+    public static final String SORTING_SERVO_LEFT_ARM_NAME = "Sorting servo left";
 
 
 
