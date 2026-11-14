@@ -18,7 +18,7 @@ public class TestSorting extends OpMode {
 
     @Override
     public void loop() {
-        if (gamepad1.aWasPressed()) {
+        if (gamepad1.bWasPressed()) {
             sorting.rightArm.activate();
         }
         if (gamepad1.aWasPressed()) {
