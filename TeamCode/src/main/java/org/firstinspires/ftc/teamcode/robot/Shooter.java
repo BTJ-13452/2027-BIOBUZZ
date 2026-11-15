@@ -185,7 +185,9 @@ public class Shooter implements BasicSystem {
 
         @Override
         public String toString() {
-            return "Is active: " + isActive();
+            return "Is active: " + isActive() + "\n" +
+                    "Flower servo right: " + flowerServoRight.getPosition() + "\n" +
+                    "Flower servo left: " + flowerServoLeft.getPosition();
 
         }
     }
