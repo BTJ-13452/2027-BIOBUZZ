@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.robot.BTJRobot;
 import org.firstinspires.ftc.teamcode.robot.Intake;
+import org.firstinspires.ftc.teamcode.robot.Sorting;
 import org.firstinspires.ftc.teamcode.util.AllianceColor;
 
 @TeleOp
@@ -12,6 +13,7 @@ public class BTJTeleOp extends OpMode {
     final int START_HEADING = 0;
     final double TIME_FOR_LONG_PRESS = 0.5;
 
+    Sorting sorting;
     BTJRobot robot;
     AllianceColor allianceColor = AllianceColor.RED;
 
@@ -37,13 +39,12 @@ public class BTJTeleOp extends OpMode {
     @Override
     public void init() {
         robot = new BTJRobot(hardwareMap, START_HEADING, allianceColor);
+        sorting = new Sorting(hardwareMap);
     }
 
     @Override
     public void start() {
         robot.intake.intakeFromFlower.deactivate();
-
-
     }
 
     @Override
@@ -74,6 +75,22 @@ public class BTJTeleOp extends OpMode {
                 robot.intake.intakeFromFlower.deactivate();
             else
                 robot.intake.intakeFromFlower.activate();
+        }
+
+        if (gamepad1.rightBumperWasPressed()) {
+            sorting.rightArm.activate();
+        }
+        if (gamepad1.leftBumperWasPressed()) {
+            sorting.rightArm.deactivate();
+        }
+
+        if (gamepad1.leftBumperWasPressed()) {
+            sorting.leftArm.activate();
+        }
+
+        if (gamepad1.rightBumperWasPressed()) {
+            sorting.leftArm.deactivate();
+
         }
     }
 

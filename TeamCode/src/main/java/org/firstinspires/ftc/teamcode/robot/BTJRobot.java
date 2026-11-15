@@ -21,13 +21,15 @@ public class BTJRobot implements BTJSystem {
     public Intake intake;
     public Shooter shooter;
 
+    public Sorting sorting;
     public Turret turret;
 
-    BTJSystem[] systems = new BTJSystem[]{drive, intake, shooter, turret};
+    BTJSystem[] systems = new BTJSystem[]{drive, intake, shooter, turret, sorting};
 
     public BTJRobot(HardwareMap hardwareMap, double startHeading, AllianceColor allianceColor) {
         drive = new RegularDrive(hardwareMap, startHeading, START_FIELDO);
         intake = new Intake(hardwareMap);
+        sorting = new Sorting(hardwareMap);
 //        shooter = new Shooter(hardwareMap);
 
         if (allianceColor == AllianceColor.BLUE) {
