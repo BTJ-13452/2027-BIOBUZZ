@@ -19,11 +19,11 @@ public class TestShooterToFlower extends OpMode {
 
     @Override
     public void loop() {
-        if (gamepad1.right_trigger > 0.1)
+        if (gamepad1.yWasPressed())
             shooter.activate();
-        else
+        if
+        (gamepad1.xWasPressed())
             shooter.deactivate();
-
         if (gamepad1.aWasPressed())
             shooter.shooterToFlower.activate();
         if (gamepad1.bWasPressed())
