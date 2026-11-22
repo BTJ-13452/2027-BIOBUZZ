@@ -2,9 +2,12 @@ package org.firstinspires.ftc.teamcode.util.pedro;
 
 import com.pedropathing.follower.Follower;
 import com.pedropathing.revhub.drivetrains.MecanumConfig;
+import com.pedropathing.revhub.localizers.PinpointConfig;
+import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.util.BTJConfiguration;
 import org.firstinspires.ftc.teamcode.util.BTJDirections;
 
@@ -22,6 +25,18 @@ public class Constants {
                 c.manualBrakeMode.set(true);
             }
     );
+
+
+    public static PinpointConfig localizerConfig = new PinpointConfig(c -> {
+        c.name.set(BTJConfiguration.PINPIONT);
+        c.podType.set(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_SWINGARM_POD);
+        c.xPodOffset.set(-3.2409628920667752);
+        c.yPodOffset.set(8.936233520507812);
+        c.xPodDirection.set(GoBildaPinpointDriver.EncoderDirection.FORWARD);
+        c.yPodDirection.set(GoBildaPinpointDriver.EncoderDirection.FORWARD);
+        c.globalDistanceUnit.set(DistanceUnit.INCH);
+        c.offsetUnits.set(DistanceUnit.INCH);
+    });
 
     public static Follower create(HardwareMap h) {
         

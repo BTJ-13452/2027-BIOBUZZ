@@ -27,6 +27,7 @@ public class BTJConfiguration {
     public static final String LIMELIGHT = "limelight";
     public static final String LEFT_LED = "";
     public static final String RIGHT_LED = "";
+    public static final String PINPIONT = "pinpoint";
 
 
 }
