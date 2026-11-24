@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode.robot;
 
-import android.text.Layout;
+import static android.os.SystemClock.sleep;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-import org.firstinspires.ftc.teamcode.util.AxonServo;
 import org.firstinspires.ftc.teamcode.util.BTJConfiguration;
 import org.firstinspires.ftc.teamcode.util.BTJDirections;
 import org.firstinspires.ftc.teamcode.util.BTJSystem;
@@ -44,9 +43,20 @@ public class Sorting implements BTJSystem {
 
 
     public class Arm implements BasicSystem {
+        final int WAIT_FOR_ELEMENT_TO_SHOOT = 1000;
+
         Servo servoArm;
         double loadingPosition;
         double defaultPosition;
+
+       public Thread scoringElementLift = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                activate();
+                sleep(WAIT_FOR_ELEMENT_TO_SHOOT);
+                deactivate();
+            }
+        });
 
 
         public Arm(HardwareMap hardwareMap, String servoName, Servo.Direction servoDirection, double loadingPosition, double defaultPosition) {
