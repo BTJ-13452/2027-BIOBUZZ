@@ -63,6 +63,7 @@ public class Sorting implements BTJSystem {
 
     public class Arm implements BasicSystem {
         final int WAIT_FOR_ELEMENT_TO_SHOOT = 1000;
+        final int WAIT_FOR_ARM_TO_GET_TO_REST_POSITION = 500;
 
         Servo servoArm;
         double loadingPosition;
@@ -74,6 +75,7 @@ public class Sorting implements BTJSystem {
                 activate();
                 sleep(WAIT_FOR_ELEMENT_TO_SHOOT);
                 deactivate();
+                sleep(WAIT_FOR_ARM_TO_GET_TO_REST_POSITION);
             }
         });
 
@@ -99,7 +101,7 @@ public class Sorting implements BTJSystem {
 
         @Override
         public boolean isActive() {
-            return servoArm.getPosition() == loadingPosition;
+            return servoArm.getPosition() == loadingPosition && !scoringElementLift.isAlive();
         }
 
         @Override
