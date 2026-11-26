@@ -10,6 +10,9 @@ import org.firstinspires.ftc.teamcode.util.BTJDirections;
 import org.firstinspires.ftc.teamcode.util.BTJSystem;
 import org.firstinspires.ftc.teamcode.util.BasicSystem;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Sorting implements BTJSystem {
     final double SORTING_ARM_RIGHT_LOADING_POSITION = 1;
     final double SORTING_ARM_LEFT_LOADING_POSITION = 1;
@@ -18,6 +21,9 @@ public class Sorting implements BTJSystem {
 
     public Arm rightArm;
     public Arm leftArm;
+
+
+    Queue<Arm> armsOrder = new LinkedList<>();
 
     public Sorting(HardwareMap hardwareMap) {
         rightArm = new Arm(hardwareMap,
@@ -33,6 +39,20 @@ public class Sorting implements BTJSystem {
                 SORTING_ARM_LEFT_DEFAULT_POSITION);
     }
 
+    public void setArmsOrder(Arm... arms) {
+        armsOrder.clear();
+        for (Arm arm : arms) {
+            armsOrder.add(arm);
+        }
+    }
+
+    @Override
+    public void update() {
+        if (!rightArm.isActive() && !leftArm.isActive() && !armsOrder.contains(0)){
+            armsOrder.poll().scoringElementLift.run();
+        }
+    }
+
     @Override
     public String toString() {
         return "Right arm: " + "\n" +
@@ -41,7 +61,6 @@ public class Sorting implements BTJSystem {
                 leftArm.toString();
     }
 
-
     public class Arm implements BasicSystem {
         final int WAIT_FOR_ELEMENT_TO_SHOOT = 1000;
 
@@ -49,7 +68,7 @@ public class Sorting implements BTJSystem {
         double loadingPosition;
         double defaultPosition;
 
-       public Thread scoringElementLift = new Thread(new Runnable() {
+        Thread scoringElementLift = new Thread(new Runnable() {
             @Override
             public void run() {
                 activate();
@@ -67,21 +86,19 @@ public class Sorting implements BTJSystem {
             this.defaultPosition = defaultPosition;
         }
 
+
         @Override
         public void activate() {
-
             servoArm.setPosition(loadingPosition);
         }
 
         @Override
         public void deactivate() {
-
             servoArm.setPosition(defaultPosition);
         }
 
         @Override
         public boolean isActive() {
-
             return servoArm.getPosition() == loadingPosition;
         }
 
